@@ -11,7 +11,7 @@ interface PageLayoutProps {
 const PageLayout = ({ title, description, children, maxW = "6xl" }: PageLayoutProps) => {
   return (
     <Container maxW={maxW} py={10}>
-      <VStack spacing={8} mb={10}>
+      <VStack gap={8} mb={10}>
         <Heading size="2xl" textAlign="center" color="teal.500">
           {title}
         </Heading>

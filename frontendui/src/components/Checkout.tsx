@@ -82,7 +82,7 @@ const Checkout = () => {
       title="Checkout Simulator" 
       description="Add items to the shortest queue. Counters process items automatically every 5 seconds."
     >
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Box 
           bg="white" 
           p={6} 
@@ -92,7 +92,7 @@ const Checkout = () => {
           maxW="md"
         >
           <form action={handleClick}>
-            <VStack spacing={4}>
+            <VStack gap={4}>
               <Text fontWeight="semibold" color={{ base: "gray.500", _dark: "gray.800" }}>Add Item to Queue</Text>
               <Input 
                 name="quantity" 
@@ -125,7 +125,7 @@ const Checkout = () => {
                 border="2px solid"
                 borderColor="gray.200"
               >
-                <VStack spacing={3}>
+                <VStack gap={3}>
                   <HStack>
                     <Text fontWeight="bold" fontSize="lg" color={{ base: "gray.500", _dark: "gray.800" }}>
                       Counter {counter.id}
@@ -134,7 +134,7 @@ const Checkout = () => {
                       Total: {total}
                     </Badge>
                   </HStack>
-                  <VStack spacing={2} w="full">
+                  <VStack gap={2} w="full">
                     {counter.queue.length === 0 ? (
                       <Text color="gray.500" fontSize="sm">
                         Empty

@@ -82,7 +82,7 @@ const Recipepage = () => {
       description="Add ingredients and get AI-generated recipes"
       maxW="4xl"
     >
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Box 
           bg="white" 
           p={6} 
@@ -91,7 +91,7 @@ const Recipepage = () => {
           w="full" 
           maxW="2xl"
         >
-          <VStack spacing={4}>
+          <VStack gap={4}>
             <Text fontSize="lg" fontWeight="semibold" color={{ base: "gray:500", _dark: "gray.800" }}>Add Ingredients</Text>
             <form action={handleAddIngredient}>
               <HStack w="full">
@@ -107,8 +107,8 @@ const Recipepage = () => {
             </form>
             
             {ingredients.length > 0 && (
-              <VStack spacing={4} w="full">
-                <Wrap spacing={2}>
+              <VStack gap={4} w="full">
+                <Wrap gap={2}>
                   {ingredients.map((ingredient, idx) => (
                     <WrapItem key={idx}>
                       <Box 

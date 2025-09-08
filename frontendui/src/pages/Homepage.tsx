@@ -23,7 +23,7 @@ const Homepage = () => {
 
   return (
     <Container maxW="6xl" py={10}>
-      <VStack spacing={8} mb={10}>
+      <VStack gap={8} mb={10}>
         <Heading size="2xl" textAlign="center" color="teal.500">
           UI Components
         </Heading>
@@ -38,25 +38,23 @@ const Homepage = () => {
       >
         {components.map(({ path, title, desc, emoji }) => (
           <GridItem key={path}>
-            <Box
-              as={Link}
-              to={path}
-              p={6}
-              bg={{ base: "white", _dark: "gray.800" }}
-              borderRadius="lg"
-              boxShadow="md"
-              border="1px"
-              borderColor={{ base: "gray.200", _dark: "gray.600" }}
-              transition="all 0.2s"
-              _hover={{
-                transform: "translateY(-2px)",
-                boxShadow: "lg",
-                borderColor: "teal.300",
-              }}
-              display="block"
-              textDecoration="none"
-            >
-              <VStack align="start" spacing={3}>
+            <Link to={path} style={{ textDecoration: "none" }}>
+              <Box
+                p={6}
+                bg={{ base: "white", _dark: "gray.800" }}
+                borderRadius="lg"
+                boxShadow="md"
+                border="1px"
+                borderColor={{ base: "gray.200", _dark: "gray.600" }}
+                transition="all 0.2s"
+                _hover={{
+                  transform: "translateY(-2px)",
+                  boxShadow: "lg",
+                  borderColor: "teal.300",
+                }}
+                cursor="pointer"
+              >
+              <VStack align="start" gap={3}>
                 <Text fontSize="3xl">{emoji}</Text>
                 <Heading size="md">
                   {title}
@@ -65,7 +63,8 @@ const Homepage = () => {
                   {desc}
                 </Text>
               </VStack>
-            </Box>
+              </Box>
+            </Link>
           </GridItem>
         ))}
       </Grid>

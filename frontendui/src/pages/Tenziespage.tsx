@@ -71,7 +71,7 @@ const Tenziespage = () => {
         </VisuallyHidden>
       )}
 
-      <VStack spacing={8}>
+      <VStack gap={8}>
         {gameWon && (
           <Box 
             bg="green.100" 

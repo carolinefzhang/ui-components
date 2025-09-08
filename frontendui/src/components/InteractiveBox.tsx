@@ -38,7 +38,7 @@ const InteractiveBox = () => {
     setPoppedCircles([]);
   }
 
-  function handleClick(event: React.MouseEvent<SVGSVGElement>) {
+  function handleClick(event: React.MouseEvent<HTMLElement>) {
     const svg = event.currentTarget;
     const rect = svg.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -52,7 +52,7 @@ const InteractiveBox = () => {
       title="Interactive Drawing" 
       description="Click anywhere in the canvas to draw circles. Use the controls to undo, redo, or reset."
     >
-      <VStack spacing={6}>
+      <VStack gap={6}>
         <Box 
           bg="white" 
           borderRadius="lg" 
@@ -85,7 +85,7 @@ const InteractiveBox = () => {
           </Box>
         </Box>
         
-        <HStack spacing={4}>
+        <HStack gap={4}>
           <Button 
             disabled={circles.length === 0} 
             onClick={handleUndo}

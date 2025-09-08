@@ -4,8 +4,6 @@ import {
   SimpleGrid,
   Button,
   Box,
-  Center,
-  Flex,
 } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
 import { generate } from "random-words";
@@ -98,7 +96,7 @@ const Endgamepage = () => {
           height={height}
         />
       )}
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Box
           bg={gameWon ? "green.100" : gameLost ? "red.100" : wrongGuesses.length > 0 ? "orange.100" : "transparent"}
           color={gameWon ? "green.800" : gameLost ? "red.800" : "orange.800"}
@@ -132,7 +130,7 @@ const Endgamepage = () => {
           ))}
         </SimpleGrid>
         
-        <HStack spacing={2} flexWrap="wrap" justify="center">
+        <HStack gap={2} flexWrap="wrap" justify="center">
           {[...word].map((letter, index) => (
             <Box
               key={index}

@@ -89,7 +89,7 @@ const Sudoku = () => {
       title="Sudoku Solver" 
       description="Enter numbers in the grid and click solve to get the solution"
     >
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Box 
           bg={{ base: "white", _dark: "gray.800" }}
           p={6} 
@@ -134,7 +134,7 @@ const Sudoku = () => {
           </SimpleGrid>
         </Box>
         
-        <HStack spacing={4}>
+        <HStack gap={4}>
           <Button 
             onClick={fetchApi}
             bg="teal"

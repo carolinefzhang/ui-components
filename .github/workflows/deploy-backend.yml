@@ -19,12 +19,12 @@ jobs:
     
     - name: Install dependencies
       run: |
-        cd backend/sudoku-api
+        cd backend
         pip install -r requirements.txt -t .
     
     - name: Package Lambda
       run: |
-        cd backend/sudoku-api
+        cd backend
         zip -r lambda-deployment.zip . -x "*.git*" "*.pyc" "__pycache__/*"
     
     - name: Deploy to Lambda
@@ -36,7 +36,7 @@ jobs:
     
     - name: Update Lambda Function
       run: |
-        cd backend/sudoku-api
+        cd backend
         aws lambda update-function-code \
           --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
           --zip-file fileb://lambda-deployment.zip

@@ -74,7 +74,7 @@ const Countdown = ({ size = 200, totalTime, color = "teal" }: props) => {
               strokeDashoffset={circumference - offset}
               strokeLinecap="round"
               transform={`rotate(-90 ${xy} ${xy})`}
-              transition="stroke-dashoffset 1s ease-in-out"
+              style={{ transition: "stroke-dashoffset 1s ease-in-out" }}
             />
           </svg>
           <Text

@@ -68,7 +68,7 @@ const Memepage = () => {
       description="Create hilarious memes with custom text"
       maxW="4xl"
     >
-      <VStack spacing={8}>
+      <VStack gap={8}>
         <Box 
           bg="white" 
           p={6} 
@@ -77,8 +77,8 @@ const Memepage = () => {
           w="full" 
           maxW="2xl"
         >
-          <VStack spacing={4}>
-            <HStack spacing={4} w="full">
+          <VStack gap={4}>
+            <HStack gap={4} w="full">
               <Field.Root flex={1}>
                 <Field.Label>Top Text</Field.Label>
                 <Input
