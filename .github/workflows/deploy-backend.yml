@@ -1,0 +1,50 @@
+name: Deploy Backend to Lambda
+
+on:
+  push:
+    branches: [ master ]
+    paths: [ 'backend/**' ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+    
+    - name: Install dependencies
+      run: |
+        cd backend/sudoku-api
+        pip install -r requirements.txt -t .
+    
+    - name: Package Lambda
+      run: |
+        cd backend/sudoku-api
+        zip -r lambda-deployment.zip . -x "*.git*" "*.pyc" "__pycache__/*"
+    
+    - name: Deploy to Lambda
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    
+    - name: Update Lambda Function
+      run: |
+        cd backend/sudoku-api
+        aws lambda update-function-code \
+          --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
+          --zip-file fileb://lambda-deployment.zip
+        aws lambda update-function-configuration \
+          --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
+          --handler lambda_handler.lambda_handler
+    
+    - name: Get API Gateway URL
+      run: |
+        API_URL=$(aws apigateway get-rest-apis --query "items[?name=='${{ secrets.API_GATEWAY_NAME }}'].id" --output text)
+        echo "API URL: https://${API_URL}.execute-api.us-east-1.amazonaws.com/prod/api"
