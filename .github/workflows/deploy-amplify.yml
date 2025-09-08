@@ -3,6 +3,7 @@ name: Deploy to Amplify
 on:
   push:
     branches: [master]
+    paths: [ 'frontendui/**', '.github/workflows/deploy-amplify.yml' ]
 
 jobs:
   deploy:

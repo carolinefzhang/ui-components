@@ -3,7 +3,7 @@ name: Deploy Backend to Lambda
 on:
   push:
     branches: [ master ]
-    paths: [ 'backend/**' ]
+    paths: [ 'backend/**', .github/workflows/deploy-backend.yml' ]
 
 jobs:
   deploy:
