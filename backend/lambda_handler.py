@@ -22,13 +22,16 @@ def lambda_handler(event, context):
     
     # Create Flask test client
     with app.test_client() as client:
+        # Extract headers and ensure proper content type
+        headers = event.get('headers', {})
+        content_type = headers.get('content-type') or headers.get('Content-Type', 'application/json')
+        
         # Make request to Flask app
         response = client.open(
             path=path,
             method=http_method,
-            headers=event.get('headers', {}),
             data=event.get('body', ''),
-            content_type=event.get('headers', {}).get('Content-Type', 'application/json')
+            content_type=content_type
         )
         
         return {
