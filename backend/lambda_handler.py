@@ -35,12 +35,5 @@ def lambda_handler(event, context):
         response_data = response.get_json()
         
         return {
-            'statusCode': response.status_code,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-            },
-            'body': response.get_data(as_text=True) if response_data is None else response.get_data(as_text=True)
+            response_data
         }
