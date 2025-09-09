@@ -17,7 +17,7 @@ def solve_sudoku(puzzle):
 
     try:
         solution = sudoku.solve(puzzle)
-    except sudoku.InvalidSudokuError, e:
+    except sudoku.InvalidSudokuError as e:
         return prepare_response(puzzle, None, 'error', str(e))
 
     if solution and sudoku.is_solved(solution):
