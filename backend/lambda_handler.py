@@ -7,6 +7,19 @@ def lambda_handler(event, context):
     http_method = event.get('httpMethod', 'POST')
     path = event.get('path', '/')
     
+    # Handle preflight OPTIONS request
+    if http_method == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Max-Age': '86400'
+            },
+            'body': ''
+        }
+    
     # Create Flask test client
     with app.test_client() as client:
         # Make request to Flask app
@@ -24,7 +37,7 @@ def lambda_handler(event, context):
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type'
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
             },
             'body': response.get_data(as_text=True)
         }
