@@ -31,6 +31,9 @@ def lambda_handler(event, context):
             content_type=event.get('headers', {}).get('Content-Type', 'application/json')
         )
         
+        # Parse the Flask response and return the actual JSON data
+        response_data = response.get_json()
+        
         return {
             'statusCode': response.status_code,
             'headers': {
@@ -39,5 +42,5 @@ def lambda_handler(event, context):
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
             },
-            'body': response.get_data(as_text=True)
+            'body': response.get_data(as_text=True) if response_data is None else response.get_data(as_text=True)
         }
