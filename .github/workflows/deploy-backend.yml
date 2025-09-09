@@ -40,9 +40,6 @@ jobs:
         aws lambda update-function-code \
           --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
           --zip-file fileb://lambda-deployment.zip
-        aws lambda update-function-configuration \
-          --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
-          --handler lambda_handler.lambda_handler
     
     - name: Get API Gateway URL
       run: |
