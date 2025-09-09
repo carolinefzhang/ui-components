@@ -40,8 +40,22 @@ jobs:
         aws lambda update-function-code \
           --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
           --zip-file fileb://lambda-deployment.zip
+        
+        aws lambda wait function-updated \
+          --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }}
+        
+        aws lambda update-function-configuration \
+          --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
+          --handler lambda_handler.lambda_handler
     
-    - name: Get API Gateway URL
+    - name: Deploy API Gateway
       run: |
-        API_URL=$(aws apigateway get-rest-apis --query "items[?name=='${{ secrets.API_GATEWAY_NAME }}'].id" --output text)
-        echo "API URL: https://${API_URL}.execute-api.us-east-1.amazonaws.com/prod/api"
+        API_ID=$(aws apigateway get-rest-apis --query "items[?name=='${{ secrets.API_GATEWAY_NAME }}'].id" --output text)
+        if [ "$API_ID" != "" ]; then
+          aws apigateway create-deployment \
+            --rest-api-id $API_ID \
+            --stage-name prod
+          echo "API URL: https://${API_ID}.execute-api.us-east-1.amazonaws.com/prod"
+        else
+          echo "API Gateway not found. Please create it manually."
+        fi
