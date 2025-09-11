@@ -83,6 +83,7 @@ const Memepage = () => {
                 <Field.Label>Top Text</Field.Label>
                 <Input
                   placeholder="Enter top text"
+                  variant={"subtle"}
                   value={meme.topText}
                   onChange={handleChange}
                   name="topText"
@@ -93,6 +94,7 @@ const Memepage = () => {
                 <Field.Label>Bottom Text</Field.Label>
                 <Input
                   placeholder="Enter bottom text"
+                  variant={"subtle"}
                   value={meme.bottomText}
                   onChange={handleChange}
                   name="bottomText"

@@ -99,6 +99,7 @@ const Recipepage = () => {
                   name="ingredient" 
                   placeholder="Enter an ingredient"
                   flex={1}
+                  variant={"subtle"}
                 />
                 <Button type="submit" bg="teal">
                   Add

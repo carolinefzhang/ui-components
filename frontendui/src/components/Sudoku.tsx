@@ -92,11 +92,6 @@ const Sudoku = () => {
       <VStack gap={8}>
         <Box 
           bg={{ base: "white", _dark: "gray.800" }}
-          p={6} 
-          borderRadius="lg" 
-          boxShadow="lg"
-          border="3px solid"
-          borderColor={{ base: "gray.600", _dark: "gray.500" }}
         >
           <SimpleGrid columns={9} gap={0}>
             {grid.map((row, rowIndex) => {

@@ -98,6 +98,7 @@ const Checkout = () => {
                 name="quantity" 
                 type="number" 
                 placeholder="Enter quantity"
+                variant="subtle"
                 min="1"
                 required 
               />

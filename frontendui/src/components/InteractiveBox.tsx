@@ -63,8 +63,8 @@ const InteractiveBox = () => {
         >
           <Box
             as="svg"
-            width={500}
-            height={400}
+            width={{"base": "100%", "md": "500px", "lg": "500px"}}
+            height={{"base": "400px", "md": "400px", "lg": "400px"}}
             cursor="crosshair"
             onClick={handleClick}
             bg="gray.50"
