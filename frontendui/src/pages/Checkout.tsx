@@ -9,7 +9,7 @@ import {
   Text,
   Badge
 } from "@chakra-ui/react";
-import PageLayout from "./PageLayout";
+import Title from "../components/Title";
 
 interface Counter {
   id: number;
@@ -39,7 +39,7 @@ const Checkout = () => {
         shortestIndex = element.id;
       }
     });
-    
+
     const updatedCounter = counter.map((counter) => {
       if (counter.id === shortestIndex) {
         const updatedQueue = [
@@ -52,7 +52,7 @@ const Checkout = () => {
     });
     setCounter(updatedCounter);
   }
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       let total = 0;
@@ -78,29 +78,30 @@ const Checkout = () => {
   }, [counter]);
 
   return (
-    <PageLayout 
-      title="Checkout Simulator" 
-      description="Add items to the shortest queue. Counters process items automatically every 5 seconds."
-    >
+    <>
+      <Title
+        title="Checkout Simulator"
+        description="Add items to the shortest queue. Counters process items automatically every 5 seconds."
+      />
       <VStack gap={8}>
-        <Box 
-          bg="white" 
-          p={6} 
-          borderRadius="lg" 
-          boxShadow="md" 
-          w="full" 
+        <Box
+          bg="white"
+          p={6}
+          borderRadius="lg"
+          boxShadow="md"
+          w="full"
           maxW="md"
         >
           <form action={handleClick}>
             <VStack gap={4}>
               <Text fontWeight="semibold" color={{ base: "gray.500", _dark: "gray.800" }}>Add Item to Queue</Text>
-              <Input 
-                name="quantity" 
-                type="number" 
+              <Input
+                name="quantity"
+                type="number"
                 placeholder="Enter quantity"
                 variant="subtle"
                 min="1"
-                required 
+                required
               />
               <Button type="submit" bg="teal" size="lg">
                 Add to Checkout
@@ -109,15 +110,15 @@ const Checkout = () => {
           </form>
         </Box>
 
-        <SimpleGrid 
-          columns={{ base: 1, md: 2, lg: 4 }} 
-          gap={6} 
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 4 }}
+          gap={6}
           w="full"
         >
           {counter.map((counter) => {
             const total = counter.queue.reduce((a, b) => a + b, 0);
             return (
-              <Box 
+              <Box
                 key={counter.id}
                 bg="white"
                 p={6}
@@ -164,7 +165,7 @@ const Checkout = () => {
           })}
         </SimpleGrid>
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

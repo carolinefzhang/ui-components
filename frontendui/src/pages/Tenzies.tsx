@@ -8,7 +8,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
-import PageLayout from "../components/PageLayout";
+import Title from "../components/Title";
 
 type Dice = {
   value: number;
@@ -57,12 +57,13 @@ const Tenziespage = () => {
       );
     }
   }
-  
+
   return (
-    <PageLayout 
-      title="Tenzies" 
-      description="Roll until all dice are the same. Click each die to freeze it at its current value between rolls."
-    >
+    <>
+      <Title
+        title="Tenzies"
+        description="Roll until all dice are the same. Click each die to freeze it at its current value between rolls."
+      />
       {gameWon && <Confetti width={width} height={height} />}
 
       {gameWon && (
@@ -73,11 +74,11 @@ const Tenziespage = () => {
 
       <VStack gap={8}>
         {gameWon && (
-          <Box 
-            bg="green.100" 
-            color="green.800" 
-            p={4} 
-            borderRadius="lg" 
+          <Box
+            bg="green.100"
+            color="green.800"
+            p={4}
+            borderRadius="lg"
             textAlign="center"
             fontSize="lg"
             fontWeight="bold"
@@ -85,11 +86,11 @@ const Tenziespage = () => {
             🎉 Congratulations! You won!
           </Box>
         )}
-        
-        <Box 
-          bg="white" 
-          p={8} 
-          borderRadius="lg" 
+
+        <Box
+          bg="white"
+          p={8}
+          borderRadius="lg"
           boxShadow="md"
         >
           <SimpleGrid columns={5} gap={4} maxW="md" mx="auto">
@@ -116,9 +117,9 @@ const Tenziespage = () => {
             ))}
           </SimpleGrid>
         </Box>
-        
-        <Button 
-          ref={rollDice} 
+
+        <Button
+          ref={rollDice}
           onClick={handleRoll}
           size="lg"
           bg="teal"
@@ -127,7 +128,7 @@ const Tenziespage = () => {
           {gameWon ? "Start New Game" : "Roll Dice"}
         </Button>
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

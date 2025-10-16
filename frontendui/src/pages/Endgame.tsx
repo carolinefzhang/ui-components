@@ -9,7 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import { generate } from "random-words";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
-import PageLayout from "../components/PageLayout";
+import Title from "../components/Title";
 
 type Language = {
   name: string;
@@ -84,10 +84,11 @@ const Endgamepage = () => {
   }, [gameWon]);
 
   return (
-    <PageLayout 
-      title="Assembly: Endgame" 
-      description={`Guess the word in under ${langs.length - 1} attempts to keep the programming world safe from Assembly!`}
-    >
+    <>
+      <Title
+        title="Assembly: Endgame"
+        description={`Guess the word in under ${langs.length - 1} attempts to keep the programming world safe from Assembly!`}
+      />
       {gameWon && (
         <Confetti
           recycle={false}
@@ -112,7 +113,7 @@ const Endgamepage = () => {
           {gameLost && `😭 Game over! Better start learning ${langs[langs.length - 1].name}`}
           {!gameOver && wrongGuesses.length > 0 && `🫡 Farewell ${langs[wrongGuesses.length - 1].name}`}
         </Box>
-        
+
         <SimpleGrid columns={{ base: 3, md: 4, lg: 6 }} gap={3} w="full" maxW="4xl">
           {langs.map((lang, index) => (
             <Box
@@ -129,7 +130,7 @@ const Endgamepage = () => {
             </Box>
           ))}
         </SimpleGrid>
-        
+
         <HStack gap={2} flexWrap="wrap" justify="center">
           {[...word].map((letter, index) => (
             <Box
@@ -151,7 +152,7 @@ const Endgamepage = () => {
             </Box>
           ))}
         </HStack>
-        
+
         <SimpleGrid columns={{ base: 8, md: 10 }} gap={2} maxW="2xl">
           {letters.map((letter) => (
             <Button
@@ -161,8 +162,8 @@ const Endgamepage = () => {
                 word.includes(letter) && guess.includes(letter)
                   ? "#10A95B"
                   : wrongGuesses.includes(letter)
-                  ? "#EC5D49"
-                  : "#FCBA29"
+                    ? "#EC5D49"
+                    : "#FCBA29"
               }
               onClick={() => handleGuess(letter)}
               disabled={guess.includes(letter)}
@@ -171,10 +172,10 @@ const Endgamepage = () => {
             </Button>
           ))}
         </SimpleGrid>
-        
+
         {gameOver && (
-          <Button 
-            ref={startGame} 
+          <Button
+            ref={startGame}
             onClick={handleStart}
             bg="teal"
             size="lg"
@@ -183,7 +184,7 @@ const Endgamepage = () => {
           </Button>
         )}
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

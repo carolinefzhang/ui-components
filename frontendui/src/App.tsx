@@ -1,35 +1,35 @@
 import { Routes, Route } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
-import Homepage from "./pages/Homepage";
-import Countdown from "./components/Countdown";
-import Checkout from "./components/Checkout";
-import Sudoku from "./components/Sudoku";
-import InteractiveBox from "./components/InteractiveBox";
-import Recipepage from "./pages/Recipepage";
-import Memepage from "./pages/Memepage";
-import Tenziespage from "./pages/Tenziespage";
-import Endgamepage from "./pages/Endgamepage";
-import Header from "./components/Header";
+import Home from "./pages/Home";
+import Countdown from "./pages/Countdown";
+import Checkout from "./pages/Checkout";
+import Sudoku from "./pages/Sudoku";
+import InteractiveBox from "./pages/InteractiveBox";
+import Recipe from "./pages/Recipe";
+import Memepage from "./pages/Meme";
+import Tenzies from "./pages/Tenzies";
+import Endgame from "./pages/Endgame";
+import Stock from "./pages/Stock";
+import PageLayout from "./components/PageLayout";
 
 function App() {
   return (
-    <Box minH={"100vh"}>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
+    <Routes>
+      <Route element={<PageLayout />}>
+        <Route index element={<Home />} />
         <Route
-          path="/count-down"
+          path="count-down"
           element={<Countdown size={200} totalTime={30} color="red" />}
         />
-        <Route path="/check-out" element={<Checkout />} />
-        <Route path="/sudoku" element={<Sudoku />} />
-        <Route path="/interactive-box" element={<InteractiveBox />} />
-        <Route path="/recipe" element={<Recipepage />} />
-        <Route path="/meme-generator" element={<Memepage />} />
-        <Route path="/tenzies" element={<Tenziespage />} />
-        <Route path="/assembly-endgame" element={<Endgamepage />} />
-      </Routes>
-    </Box>
+        <Route path="check-out" element={<Checkout />} />
+        <Route path="sudoku" element={<Sudoku />} />
+        <Route path="interactive-box" element={<InteractiveBox />} />
+        <Route path="recipe" element={<Recipe />} />
+        <Route path="meme-generator" element={<Memepage />} />
+        <Route path="tenzies" element={<Tenzies />} />
+        <Route path="assembly-endgame" element={<Endgame />} />
+        <Route path="stock" element={<Stock />} />
+      </Route>
+    </Routes>
   );
 }
 

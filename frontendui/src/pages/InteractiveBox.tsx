@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Box, Button, HStack, VStack, Text } from "@chakra-ui/react";
-import PageLayout from "./PageLayout";
+import Title from "../components/Title";
 
 type Circle = {
   x: number;
@@ -20,7 +20,7 @@ const InteractiveBox = () => {
       return newCircles;
     });
   }
-  
+
   function handleRedo() {
     setCircles((prev) => {
       const newCircles = [...prev];
@@ -32,7 +32,7 @@ const InteractiveBox = () => {
       return newCircles;
     });
   }
-  
+
   function handleReset() {
     setCircles([]);
     setPoppedCircles([]);
@@ -48,23 +48,24 @@ const InteractiveBox = () => {
   }
 
   return (
-    <PageLayout 
-      title="Interactive Drawing" 
-      description="Click anywhere in the canvas to draw circles. Use the controls to undo, redo, or reset."
-    >
+    <>
+      <Title
+        title="Interactive Drawing"
+        description="Click anywhere in the canvas to draw circles. Use the controls to undo, redo, or reset."
+      />
       <VStack gap={6}>
-        <Box 
-          bg="white" 
-          borderRadius="lg" 
-          boxShadow="lg" 
+        <Box
+          bg="white"
+          borderRadius="lg"
+          boxShadow="lg"
           p={4}
           border="2px solid"
           borderColor="gray.300"
         >
           <Box
             as="svg"
-            width={{"base": "100%", "md": "500px", "lg": "500px"}}
-            height={{"base": "400px", "md": "400px", "lg": "400px"}}
+            width={{ "base": "100%", "md": "500px", "lg": "500px" }}
+            height={{ "base": "400px", "md": "400px", "lg": "400px" }}
             cursor="crosshair"
             onClick={handleClick}
             bg="gray.50"
@@ -84,26 +85,26 @@ const InteractiveBox = () => {
             ))}
           </Box>
         </Box>
-        
+
         <HStack gap={4}>
-          <Button 
-            disabled={circles.length === 0} 
+          <Button
+            disabled={circles.length === 0}
             onClick={handleUndo}
             colorScheme="orange"
             variant="outline"
           >
             Undo
           </Button>
-          <Button 
-            disabled={poppedCircles.length === 0} 
+          <Button
+            disabled={poppedCircles.length === 0}
             onClick={handleRedo}
             colorScheme="blue"
             variant="outline"
           >
             Redo
           </Button>
-          <Button 
-            disabled={circles.length === 0} 
+          <Button
+            disabled={circles.length === 0}
             onClick={handleReset}
             colorScheme="red"
             variant="outline"
@@ -111,12 +112,12 @@ const InteractiveBox = () => {
             Reset
           </Button>
         </HStack>
-        
+
         <Text fontSize="sm" color="gray.600">
           Circles drawn: {circles.length}
         </Text>
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

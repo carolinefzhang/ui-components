@@ -7,8 +7,8 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import { useState, useEffect} from "react";
-import PageLayout from "../components/PageLayout";
+import { useState, useEffect } from "react";
+import Title from "../components/Title";
 
 type Meme = {
   topText: string;
@@ -33,23 +33,23 @@ const Memepage = () => {
   });
   const [allmemes, setAllMemes] = useState<AllMeme[]>([])
   const [width, setWidth] = useState<number>(window.innerWidth)
-  
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const {value, name} = e.currentTarget
+    const { value, name } = e.currentTarget
     setMeme((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleClick() {
     const url = allmemes[Math.floor(Math.random() * allmemes.length)].url;
-    setMeme((prev) => ({...prev, imageUrl: url}));
+    setMeme((prev) => ({ ...prev, imageUrl: url }));
   }
-  
+
   useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
-    .then((res) => res.json())
-    .then((data) => {
-      setAllMemes(data.data.memes);
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAllMemes(data.data.memes);
+      })
   }, []);
 
   useEffect(() => {
@@ -63,18 +63,18 @@ const Memepage = () => {
   }, [])
 
   return (
-    <PageLayout 
-      title="Meme Generator" 
-      description="Create hilarious memes with custom text"
-      maxW="4xl"
-    >
+    <>
+      <Title
+        title="Meme Generator"
+        description="Create hilarious memes with custom text"
+      />
       <VStack gap={8}>
-        <Box 
-          bg="white" 
-          p={6} 
-          borderRadius="lg" 
-          boxShadow="md" 
-          w="full" 
+        <Box
+          bg="white"
+          p={6}
+          borderRadius="lg"
+          boxShadow="md"
+          w="full"
           maxW="2xl"
         >
           <VStack gap={4}>
@@ -102,9 +102,9 @@ const Memepage = () => {
                 />
               </Field.Root>
             </HStack>
-            <Button 
-              onClick={handleClick} 
-              bg="teal" 
+            <Button
+              onClick={handleClick}
+              bg="teal"
               size="lg"
               disabled={allmemes.length === 0}
             >
@@ -112,12 +112,12 @@ const Memepage = () => {
             </Button>
           </VStack>
         </Box>
-        
+
         {meme && (
           <Box position="relative" maxW="lg">
-            <Box 
-              className="meme" 
-              position="relative" 
+            <Box
+              className="meme"
+              position="relative"
               display="inline-block"
               borderRadius="lg"
               overflow="hidden"
@@ -139,14 +139,14 @@ const Memepage = () => {
               >
                 {meme.topText}
               </Text>
-              <img 
-                src={meme.imageUrl} 
-                alt="Meme" 
-                style={{ 
-                  maxWidth: "100%", 
-                  height: "auto", 
-                  display: "block" 
-                }} 
+              <img
+                src={meme.imageUrl}
+                alt="Meme"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  display: "block"
+                }}
               />
               <Text
                 className="bottom-text"
@@ -167,12 +167,12 @@ const Memepage = () => {
             </Box>
           </Box>
         )}
-        
+
         <Text fontSize="sm" color="gray.500">
           Window width: {width}px
         </Text>
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

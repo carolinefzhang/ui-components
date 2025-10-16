@@ -7,7 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import PageLayout from "./PageLayout";
+import Title from "../components/Title";
 
 const Sudoku = () => {
   const initialValue = [
@@ -85,12 +85,13 @@ const Sudoku = () => {
   };
 
   return (
-    <PageLayout 
-      title="Sudoku Solver" 
-      description="Enter numbers in the grid and click solve to get the solution"
-    >
+    <>
+      <Title
+        title="Sudoku Solver"
+        description="Enter numbers in the grid and click solve to get the solution"
+      />
       <VStack gap={8}>
-        <Box 
+        <Box
           bg={{ base: "white", _dark: "gray.800" }}
         >
           <SimpleGrid columns={9} gap={0}>
@@ -128,16 +129,16 @@ const Sudoku = () => {
             })}
           </SimpleGrid>
         </Box>
-        
+
         <HStack gap={4}>
-          <Button 
+          <Button
             onClick={fetchApi}
             bg="teal"
             size="lg"
           >
             Solve Puzzle
           </Button>
-          <Button 
+          <Button
             onClick={clearGrid}
             variant="outline"
             size="lg"
@@ -147,7 +148,7 @@ const Sudoku = () => {
           </Button>
         </HStack>
       </VStack>
-    </PageLayout>
+    </>
   );
 };
 

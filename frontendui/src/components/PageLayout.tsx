@@ -1,28 +1,18 @@
-import { Container, VStack, Heading, Text, Box } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { Container, Box } from "@chakra-ui/react";
 
-interface PageLayoutProps {
-  title: string;
-  description?: string;
-  children: ReactNode;
-  maxW?: string;
-}
+import Header from "./Header";
+import { Outlet } from "react-router"
 
-const PageLayout = ({ title, description, children, maxW = "6xl" }: PageLayoutProps) => {
+const PageLayout = () => {
   return (
-    <Container maxW={maxW} py={10}>
-      <VStack gap={8} mb={10}>
-        <Heading size="2xl" textAlign="center" color="teal.500">
-          {title}
-        </Heading>
-        {description && (
-          <Text fontSize="lg" color="gray.500" textAlign="center" maxW="2xl">
-            {description}
-          </Text>
-        )}
-      </VStack>
-      <Box>{children}</Box>
-    </Container>
+    <Box w="100%" minH="100vh" margin={0} padding={0}>
+      <Header />
+      <Box px={4}>
+        <Box maxW="6xl" py={10} mx="auto">
+          <Outlet />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

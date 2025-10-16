@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Box, Text } from "@chakra-ui/react";
-import PageLayout from "./PageLayout";
+import Title from "../components/Title";
 
 interface props {
   size: number;
@@ -34,14 +34,15 @@ const Countdown = ({ size = 200, totalTime, color = "teal" }: props) => {
   }, []);
 
   return (
-    <PageLayout 
-      title="Countdown Timer" 
-      description={`A ${totalTime}-second countdown timer with circular progress`}
-    >
+    <>
+      <Title
+        title="Countdown Timer"
+        description={`A ${totalTime}-second countdown timer with circular progress`}
+      />
       <Box display="flex" justifyContent="center" alignItems="center" minH="400px">
-        <Box 
-          position="relative" 
-          w={size} 
+        <Box
+          position="relative"
+          w={size}
           h={size}
           bg="white"
           borderRadius="full"
@@ -50,9 +51,9 @@ const Countdown = ({ size = 200, totalTime, color = "teal" }: props) => {
           alignItems="center"
           justifyContent="center"
         >
-          <svg 
-            width={size} 
-            height={size} 
+          <svg
+            width={size}
+            height={size}
             style={{ position: "absolute" }}
           >
             <circle
@@ -88,18 +89,18 @@ const Countdown = ({ size = 200, totalTime, color = "teal" }: props) => {
         </Box>
       </Box>
       {time === 0 && (
-        <Box 
-          bg="red.100" 
-          color="red.800" 
-          p={4} 
-          borderRadius="lg" 
-          textAlign="center" 
+        <Box
+          bg="red.100"
+          color="red.800"
+          p={4}
+          borderRadius="lg"
+          textAlign="center"
           mt={6}
         >
           ⏰ Time's up!
         </Box>
       )}
-    </PageLayout>
+    </>
   );
 };
 
