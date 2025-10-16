@@ -71,6 +71,7 @@ A collection of interactive React components and games built with Chakra UI, fea
 - **Meme Generator** - Custom meme creation tool
 - **Tenzies** - Dice matching game
 - **Assembly Endgame** - Word guessing game
+- **Stock** - AI-powered stock prediction
 
 ## Deployment
 
@@ -90,6 +91,7 @@ Create `.env` file in `frontendui/` directory:
 ```env
 VITE_API_URL=your_api_gateway_url
 VITE_GEMINI_API_KEY=your_gemini_api_key
+VITE_POLYGON_API_KEY=your_polygon_api_key
 ```
 
 ## Available Scripts
