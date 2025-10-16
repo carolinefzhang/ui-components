@@ -1,4 +1,4 @@
-import { Container, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import Header from "./Header";
 import { Outlet } from "react-router"
